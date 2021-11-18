@@ -10,16 +10,9 @@
                             </div>
                             <div class="card fat">
                                 <div class="card-body">
-                                    <h4 class="card-title">Sign UP</h4>
+                                    <h4 class="card-title">Login</h4>
                                     <form method="POST" class="my-login-validation" novalidate="">
-                                        <div class="form-group">
-                                            <label style="text-align:left" for="email">Name</label>
-                                            <input id="name" type="text" class="form-control" v-model="name" name="name" value="" required autofocus>
-                                            <div class="invalid-feedback">
-                                                Email is invalid
-                                            </div>
-                                        </div>
-
+                                        
                                         <div class="form-group">
                                             <label for="email" style="text-align:left">E-Mail Address</label>
                                             <input id="email" type="email" class="form-control" v-model="email" name="email" value="" required autofocus>
@@ -30,7 +23,7 @@
 
                                         <div class="form-group">
                                             <label for="password" style="text-align:left">Password
-                                                <a href="forgot.html"  class="float-right">
+                                                <a href="forgot.html"  class="float-right" style="float:right" >
                                                     Forgot Password?
                                                 </a>
                                             </label>
@@ -40,13 +33,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group mt-2" >
-                                            <button type="submit" style="float:left;" v-on:click="signUp" class="btn btn-primary">
-                                                Save
+                                        <div class="form-group m-2">
+                                            <button type="submit" v-on:click="signUp" class="btn btn-primary btn-block">
+                                                Login
                                             </button>
-                                            <router-link style="float:right;" to="/login" class="btn btn-info">Login Here</router-link>
                                         </div>
-                                        <div class="form-group  text-center " style="margin-top: 75px;">
+                                        <div class="mt-4 text-center">
                                             Don't have an account? <a href="">Create One</a>
                                         </div>
                                     </form>
@@ -63,40 +55,13 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    export default{
+    export default {
         data(){
-            return{
-                name: '',
-                email : '',
-                password : ''
-            }
-        },
-
-        methods : {
-
-            async signUp(){
-               let  result = await axios.post('http://localhost:3000/users',{
-                email: this.email,
-                password: this.password,
-                name: this.name,
-                 
-             });
-
-             if(result.status == 201){
-                localStorage.setItem("user-info", JSON.stringify(result.data));
-                 this.$router.push({name:"home"});
-             }
-           }
-        },
-
-        mounted(){
-            let user = localStorage.getItem('user-info');
-                if(user){
-                    this.$router.push({name:"home"});
+            return {
+                email: '',
+                password: '',
             }
         }
-
     }
 </script>
 
