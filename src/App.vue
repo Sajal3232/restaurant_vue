@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <compSignUp/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import compSignUp from './components/SignUp.vue'
 export default {
 
 components : {
-  compSignUp : compSignUp
 }
 
 }

@@ -63,9 +63,8 @@
                  
              });
 
-             console.log(result);
              if(result.status == 201){
-                 alert('sign up successfully')
+                 this.$router.push({name:"home"});
              }
            }
         }
