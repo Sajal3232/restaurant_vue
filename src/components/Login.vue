@@ -34,11 +34,12 @@
                                         </div>
 
                                         <div class="form-group m-2">
-                                            <button type="submit" v-on:click="signUp" class="btn btn-primary btn-block">
+                                            <button type="button" style="float:left;" v-on:click="login" class="btn btn-primary">
                                                 Login
                                             </button>
+                                            <router-link style="float:right;" to="/signup" class="btn btn-info">sign up Here</router-link>
                                         </div>
-                                        <div class="mt-4 text-center">
+                                        <div class="form-group  text-center " style="margin-top: 75px;">
                                             Don't have an account? <a href="">Create One</a>
                                         </div>
                                     </form>
@@ -55,11 +56,30 @@
 </template>
 
 <script>
+import axios from "axios"
     export default {
         data(){
             return {
                 email: '',
                 password: '',
+            }
+        },
+        methods: {
+           async login(){
+                let result = await axios.get(
+                    `http://localhost:3000/users?email=${this.email}&password=${this.password}`
+                )
+                if(result.status == 200 && result.data.length>0){
+                localStorage.setItem("user-info", JSON.stringify(result.data));
+                 this.$router.push({name:"home"});
+             }
+            }
+        },
+
+        mounted(){
+            let user = localStorage.getItem('user-info');
+                if(user){
+                    this.$router.push({name:"home"});
             }
         }
     }

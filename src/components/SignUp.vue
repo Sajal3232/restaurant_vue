@@ -14,7 +14,7 @@
                                     <form method="POST" class="my-login-validation" novalidate="">
                                         <div class="form-group">
                                             <label style="text-align:left" for="email">Name</label>
-                                            <input id="name" type="text" class="form-control" v-model="name" name="name" value="" required autofocus>
+                                            <input id="name" type="text" class="form-control" v-model="name" required autofocus>
                                             <div class="invalid-feedback">
                                                 Email is invalid
                                             </div>
@@ -22,7 +22,7 @@
 
                                         <div class="form-group">
                                             <label for="email" style="text-align:left">E-Mail Address</label>
-                                            <input id="email" type="email" class="form-control" v-model="email" name="email" value="" required autofocus>
+                                            <input id="email" type="email" class="form-control" v-model="email"  required autofocus>
                                             <div class="invalid-feedback">
                                                 Email is invalid
                                             </div>
@@ -41,7 +41,7 @@
                                         </div>
 
                                         <div class="form-group mt-2" >
-                                            <button type="submit" style="float:left;" v-on:click="signUp" class="btn btn-primary">
+                                            <button type="button" style="float:left;" v-on:click="signUp" class="btn btn-primary">
                                                 Save
                                             </button>
                                             <router-link style="float:right;" to="/login" class="btn btn-info">Login Here</router-link>
@@ -74,7 +74,7 @@
         },
 
         methods : {
-
+            
             async signUp(){
                let  result = await axios.post('http://localhost:3000/users',{
                 email: this.email,
@@ -96,8 +96,9 @@
                     this.$router.push({name:"home"});
             }
         }
-
     }
+
+    
 </script>
 
 <style scoped>
