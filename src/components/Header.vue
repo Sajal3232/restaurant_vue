@@ -6,13 +6,13 @@
             <div class="collapse navbar-collapse bg-info justify-content-around" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link"  href="#">Home</a>
+                        <router-link class="nav-link" to="/" href="#">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Add Restuarant</a>
+                        <router-link class="nav-link" to="/add" href="#">Add Restuarant</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Edit Restuarant</a>
+                        <router-link class="nav-link" href="#" to="/update" >Edit Restuarant</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" v-on:click="logout" href="#">Logout</a>

@@ -1,11 +1,13 @@
-import compHome from './components/Home'
+import compHome from './components/Home.vue'
 import copmSignUp from './components/SignUp.vue'
 import compLogin from './components/Login.vue'
+import compAdd from './components/Add.vue'
+import compUpdate from './components/Update.vue'
 
 
 export const routes = [
     {
-        path: '',
+        path: '/',
         component : compHome,
         name: "home"
 
@@ -19,5 +21,15 @@ export const routes = [
         path: '/login',
         component : compLogin,
         name: "Login"
+    },
+    {
+        path: '/add',
+        component : compAdd,
+        name: "Add"
+    },
+    {
+        path: '/update',
+        component : compUpdate,
+        name: "Update"
     },
 ]
