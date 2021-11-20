@@ -1,16 +1,24 @@
 <template>
     <div>
-        <p>this is a home page</p>
+        <p>hello {{ name }}this is a home page</p>
     </div>
 </template>
 
 <script>
     export default{
+
+        data(){
+            return {
+                name: ' '
+            }
+        },
         
         mounted(){
             let user = localStorage.getItem('user-info');
-                if(!user){
-                    this.$router.push({name:"SignUp"});
+            this.name = JSON.parse(user)[0].name;
+            
+            if(!user){
+                this.$router.push({name:"SignUp"});
             }
         }
     }
