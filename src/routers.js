@@ -32,5 +32,10 @@ export const routes = [
         component : compUpdate,
         name: "Update"
     },
+    {
+        path: '/update/:id',
+        component : compUpdate,
+        name: "Update"
+    },
 ]
 

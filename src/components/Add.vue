@@ -37,7 +37,7 @@
                            <div class="mb-3">
                                 <label class="form-label" style="float:left;"></label>
                                 <button type="button" style="float:left;" v-on:click="addRestuarant" class="btn btn-primary">
-                                    Save
+                                    Add Restuarant
                                 </button>                            
                             </div>
                         </div>                        
@@ -67,7 +67,7 @@ import axios from "axios";
 
         methods: {
            async addRestuarant(){
-              const result = await axios.post("http://localhost:3000/restaurants",{
+                const result = await axios.post("http://localhost:3000/restaurants",{
                     name : this.restaurants.name,
                     address : this.restaurants.address,
                     phone : this.restaurants.phone,
@@ -76,7 +76,9 @@ import axios from "axios";
                 if(result.status == 201){
                     this.$router.push({name:"home"});
                 }
-            }
+            },
+
+            
         },
 
         mounted(){

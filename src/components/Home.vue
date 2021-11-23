@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <p>hello {{ name }}this is a home page</p>
+        <h1>hello {{ name }} this is a home page</h1>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -8,6 +8,7 @@
                     <th>Name</th>
                     <th>Address</th>
                     <th>Phone</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,10 @@
                     <td>{{item.name}}</td>
                     <td>{{item.address}}</td>
                     <td>{{item.phone}}</td>
+                    <td>
+                        <router-link class="btn btn-info" :to="'/update/'+ item.id ">Update</router-link>
+                        <button type="button" class="btn btn-danger" v-on:click="deleteRestuarant(item.id)">Delete</button>
+                    </td>
                 </tr>
 
             </tbody>
@@ -33,17 +38,32 @@
                 restuarants : []
             }
         },
+
+        methods: {
+           async deleteRestuarant(id){
+                let result = await axios.delete("http://localhost:3000/restaurants/"+id)
+
+                if(result.status == 200){
+                    this.loadView();
+                }
+               
+            },
+
+            async loadView(){
+                let user = localStorage.getItem('user-info');
+                this.name = JSON.parse(user)[0].name;
+                
+                if(!user){
+                    this.$router.push({name:"SignUp"});
+                }
+
+                let results = await axios.get("http://localhost:3000/restaurants");
+                this.restuarants = results.data;
+            }
+        },
         
         async mounted(){
-            let user = localStorage.getItem('user-info');
-            this.name = JSON.parse(user)[0].name;
-            
-            if(!user){
-                this.$router.push({name:"SignUp"});
-            }
-
-            let results = await axios.get("http://localhost:3000/restaurants");
-            this.restuarants = results.data;
+             this.loadView();
         }
     }
 
