@@ -74,7 +74,6 @@
         },
 
         methods : {
-            
             async signUp(){
                let  result = await axios.post('http://localhost:3000/users',{
                 email: this.email,
@@ -92,8 +91,8 @@
 
         mounted(){
             let user = localStorage.getItem('user-info');
-                if(user){
-                    this.$router.push({name:"home"});
+            if(user){
+                this.$router.push({name:"home"});
             }
         }
     }
